@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var force_min = 50
-var force_max = 175
+var force_max = 225
 
 var landing_min = 1.5
 var landing_max = 2.5
@@ -13,6 +13,7 @@ onready var timer = get_node("LandingTimer")
 
 func _ready():
 	yield(get_tree(), "idle_frame")
+	$AnimationPlayer.play("idle")
 
 func launch():
 	rng.randomize()
@@ -20,7 +21,7 @@ func launch():
 	var force = rng.randf_range(force_min, force_max)
 	
 	var angle = rng.randf_range(PI*-0.25, PI*0.25)
-	rotate(angle)
+#	rotate(angle)
 	
 	var direction = Vector2.UP.rotated(angle)
 	apply_central_impulse(direction * force)
@@ -28,6 +29,9 @@ func launch():
 	var time = rng.randf_range(landing_min, landing_max)
 	timer.wait_time = time
 	timer.start()
+	yield(get_tree().create_timer(time - 0.5), "timeout")
+	$Shadow.show()
+	$Shadow/AnimationPlayer.play("enlarge")
 #	yield(get_tree().create_timer(time), "timeout")
 #	land()
 

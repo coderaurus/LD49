@@ -3,9 +3,16 @@ extends KinematicBody2D
 signal died
 signal hit
 
-var speed : int = 200
+onready var anim = get_node("AnimationPlayer")
+
+
+var speed : int = 175
 var velocity : Vector2 = Vector2.ZERO
 var jumping = false
+var dying = false
+
+func _ready():
+	anim.play("idle")
 
 
 func get_input():
@@ -17,24 +24,37 @@ func get_input():
 		
 	if Input.is_action_pressed("ui_left"):
 		velocity += Vector2.LEFT
+		$Sprite.flip_h = true
 	elif Input.is_action_pressed("ui_right"):
 		velocity += Vector2.RIGHT
+		$Sprite.flip_h = false
 
 	velocity = velocity.normalized()
+	
+	
 
 	if Input.is_action_just_pressed("jump") and !jumping:
 		jump()
 	
 	if Input.is_action_just_pressed("ui_accept") and get_tree().current_scene.player_at_exit:
 		get_tree().current_scene.emit_signal("room_exited")
+		
+	if !jumping and !dying:
+		if velocity != Vector2.ZERO:
+			anim.play("move")
+		else:
+			anim.play("idle")
 
 func jump():
-	print("Jump")
+#	$CollisionShape2D.disabled = true
+	anim.advance(0)
+	anim.play("jump")
 	jumping = true
-	$CollisionShape2D.disabled = true
-	yield(get_tree().create_timer(1.0), "timeout")
-	$CollisionShape2D.disabled = false
+	print("Jumping")
+	yield(anim, "animation_finished")
 	jumping = false
+	print("Landed")	
+	#$CollisionShape2D.disabled = false
 
 
 func _process(delta):
@@ -43,5 +63,10 @@ func _process(delta):
 
 
 func _on_Player_hit():
-	emit_signal("died")
-	queue_free()
+	if !jumping:
+		dying = true
+		anim.advance(0)
+		anim.play("die")
+		yield(anim,"animation_finished")
+		emit_signal("died")
+		queue_free()

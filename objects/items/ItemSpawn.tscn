@@ -4,7 +4,7 @@
 [ext_resource path="res://objects/items/ItemSpawn.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+extents = Vector2( 19.1778, 18.6485 )
 
 [node name="ItemSpawn" type="Area2D" groups=[
 "Item",
@@ -16,8 +16,8 @@ script = ExtResource( 3 )
 shape = SubResource( 1 )
 
 [node name="Item" parent="." instance=ExtResource( 1 )]
-modulate = Color( 1, 0.796078, 0, 1 )
 position = Vector2( 0, 0 )
+texture = null
 
 [connection signal="body_entered" from="." to="." method="_on_ItemSpawn_body_entered"]
 [connection signal="hit" from="." to="." method="_on_ItemSpawn_hit"]
