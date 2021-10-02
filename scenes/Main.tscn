@@ -1,3 +1,716 @@
-[gd_scene format=2]
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://objects/player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/items/ItemSpawn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Main.gd" type="Script" id=4]
+[ext_resource path="res://objects/cauldron/Cauldron.gd" type="Script" id=5]
+[ext_resource path="res://objects/Door.gd" type="Script" id=6]
+[ext_resource path="res://objects/items/ItemManager.gd" type="Script" id=7]
+[ext_resource path="res://objects/ui/UI.gd" type="Script" id=8]
+[ext_resource path="res://MusicPlayer.gd" type="Script" id=9]
+[ext_resource path="res://SoundPlayer.gd" type="Script" id=10]
+[ext_resource path="res://objects/ui/MusicToggle.gd" type="Script" id=11]
+[ext_resource path="res://objects/ui/SoundToggle.gd" type="Script" id=12]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 16 )
 
 [node name="Main" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 323.891, 79.7835 )
+
+[node name="Cauldron" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 317.641, 167.81 )
+z_index = 5
+texture = ExtResource( 3 )
+script = ExtResource( 5 )
+
+[node name="LaunchTimer" type="Timer" parent="Cauldron"]
+wait_time = 0.5
+
+[node name="Items" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Uniques" type="Node2D" parent="Items"]
+
+[node name="US" parent="Items/Uniques" instance=ExtResource( 2 )]
+position = Vector2( 390.941, 168.713 )
+is_unique = true
+
+[node name="US 2" parent="Items/Uniques" instance=ExtResource( 2 )]
+position = Vector2( 617.23, 99.2228 )
+is_unique = true
+
+[node name="US 3" parent="Items/Uniques" instance=ExtResource( 2 )]
+position = Vector2( 27.4547, 106.35 )
+is_unique = true
+
+[node name="US 4" parent="Items/Uniques" instance=ExtResource( 2 )]
+position = Vector2( 127.235, 300.566 )
+is_unique = true
+
+[node name="Commons" type="Node2D" parent="Items"]
+
+[node name="IS" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 149.188, 80.6107 )
+
+[node name="IS2" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 123.025, 132.23 )
+
+[node name="IS3" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 169.694, 123.037 )
+
+[node name="IS4" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 545.168, 218.497 )
+
+[node name="IS5" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 519.005, 270.115 )
+
+[node name="IS6" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 565.674, 260.923 )
+
+[node name="IS7" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 485.771, 188.091 )
+
+[node name="IS8" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 459.608, 239.71 )
+
+[node name="IS9" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 506.277, 230.517 )
+
+[node name="IS10" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 100.398, 217.789 )
+
+[node name="IS11" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 74.2346, 269.408 )
+
+[node name="IS12" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 120.904, 260.216 )
+
+[node name="IS13" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 196.564, 229.81 )
+
+[node name="IS14" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 170.401, 281.429 )
+
+[node name="IS15" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 217.07, 272.237 )
+
+[node name="IS16" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 480.821, 60.1047 )
+
+[node name="IS17" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 454.658, 111.723 )
+
+[node name="IS18" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 501.327, 102.531 )
+
+[node name="IS19" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 306.166, 223.446 )
+
+[node name="IS20" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 280.003, 275.065 )
+
+[node name="IS21" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 326.672, 265.873 )
+
+[node name="IS22" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 393.847, 215.668 )
+
+[node name="IS23" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 367.684, 267.287 )
+
+[node name="IS24" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 414.353, 258.095 )
+
+[node name="IS25" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 82.7199, 129.401 )
+
+[node name="IS26" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 56.5569, 181.02 )
+
+[node name="IS27" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 103.226, 171.828 )
+
+[node name="IS28" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 208.585, 110.309 )
+
+[node name="IS29" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 182.422, 161.928 )
+
+[node name="IS30" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 229.091, 152.736 )
+
+[node name="IS31" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 551.532, 106.067 )
+
+[node name="IS32" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 525.369, 157.685 )
+
+[node name="IS33" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 572.038, 148.493 )
+
+[node name="IS34" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 369.805, 88.389 )
+
+[node name="IS35" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 416.474, 79.1966 )
+
+[node name="IS36" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 212.827, 67.1758 )
+
+[node name="IS37" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 259.497, 57.9834 )
+
+[node name="IS38" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 69.2848, 53.7407 )
+
+[node name="IS39" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 115.954, 44.5484 )
+
+[node name="IS40" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 104.64, 81.3179 )
+
+[node name="IS41" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 174.644, 43.1341 )
+
+[node name="IS42" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 149.895, 154.857 )
+
+[node name="IS43" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 131.51, 191.627 )
+
+[node name="IS44" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 148.481, 223.446 )
+
+[node name="IS45" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 121.611, 236.881 )
+
+[node name="IS46" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 38.8792, 226.275 )
+
+[node name="IS47" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 78.4771, 226.982 )
+
+[node name="IS48" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 177.472, 191.627 )
+
+[node name="IS49" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 171.108, 243.245 )
+
+[node name="IS50" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 244.647, 291.329 )
+
+[node name="IS51" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 325.965, 291.329 )
+
+[node name="IS52" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 220.606, 234.053 )
+
+[node name="IS53" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 253.133, 234.053 )
+
+[node name="IS54" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 219.191, 184.556 )
+
+[node name="IS55" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 255.254, 104.652 )
+
+[node name="IS56" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 415.767, 127.28 )
+
+[node name="IS57" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 275.053, 125.159 )
+
+[node name="IS58" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 255.961, 188.091 )
+
+[node name="IS59" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 349.299, 205.769 )
+
+[node name="IS60" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 354.249, 229.103 )
+
+[node name="IS61" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 296.266, 246.781 )
+
+[node name="IS62" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 396.675, 287.793 )
+
+[node name="IS63" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 446.88, 280.722 )
+
+[node name="IS64" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 480.821, 274.358 )
+
+[node name="IS65" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 443.344, 178.899 )
+
+[node name="IS66" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 429.909, 207.183 )
+
+[node name="IS67" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 469.507, 138.594 )
+
+[node name="IS68" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 444.051, 45.2555 )
+
+[node name="IS69" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 521.126, 57.9834 )
+
+[node name="IS70" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 549.41, 40.3057 )
+
+[node name="IS71" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 569.917, 57.2763 )
+
+[node name="IS72" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 548.703, 75.6611 )
+
+[node name="IS73" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 588.301, 171.828 )
+
+[node name="IS74" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 540.218, 181.02 )
+
+[node name="IS75" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 521.833, 120.209 )
+
+[node name="IS76" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 496.377, 137.886 )
+
+[node name="IS77" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 369.098, 125.866 )
+
+[node name="IS78" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 392.433, 55.8621 )
+
+[node name="IS79" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 581.937, 207.89 )
+
+[node name="IS80" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 603.858, 245.367 )
+
+[node name="IS81" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 554.36, 280.722 )
+
+[node name="IS82" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 241.819, 203.647 )
+
+[node name="IS83" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 107.469, 105.36 )
+
+[node name="IS84" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 31.8083, 36.0631 )
+
+[node name="IS85" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 89.0839, 31.1134 )
+
+[node name="IS86" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 149.895, 113.138 )
+
+[node name="IS87" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 145.652, 28.285 )
+
+[node name="IS88" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 181.715, 82.7322 )
+
+[node name="IS89" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 228.384, 31.8205 )
+
+[node name="IS90" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 234.748, 80.6109 )
+
+[node name="IS91" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 246.062, 127.987 )
+
+[node name="IS92" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 259.497, 161.221 )
+
+[node name="IS93" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 347.885, 110.309 )
+
+[node name="IS94" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 280.003, 81.318 )
+
+[node name="IS95" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 370.512, 154.857 )
+
+[node name="IS96" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 458.194, 84.8535 )
+
+[node name="IS97" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 475.871, 162.635 )
+
+[node name="IS98" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 432.738, 152.029 )
+
+[node name="IS99" parent="Items/Commons" instance=ExtResource( 2 )]
+modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
+position = Vector2( 468.8, 203.647 )
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2( 324.287, 47.2176 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Door"]
+modulate = Color( 0.631373, 0.329412, 0.0627451, 1 )
+position = Vector2( 0, -32 )
+texture = ExtResource( 3 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 8 )
+
+[node name="Menu" type="Control" parent="UI"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="UI/Menu"]
+modulate = Color( 1, 1, 1, 0.439216 )
+margin_left = 4.00339
+margin_top = 94.651
+margin_right = 42.0034
+margin_bottom = 114.651
+rect_scale = Vector2( 6.15866, 10.9626 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="Button" parent="UI/Menu"]
+margin_left = 12.9932
+margin_top = 151.587
+margin_right = 50.9932
+margin_bottom = 171.587
+focus_neighbour_top = NodePath("../Music/MusicSlider")
+focus_neighbour_bottom = NodePath("../Sound/SoundToggle")
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sound" type="Node2D" parent="UI/Menu"]
+
+[node name="SoundText" type="Label" parent="UI/Menu/Sound"]
+margin_left = 50.7968
+margin_top = 196.044
+margin_right = 90.7968
+margin_bottom = 236.044
+text = "Sound"
+
+[node name="SoundToggle" type="TextureButton" parent="UI/Menu/Sound"]
+margin_left = 12.6992
+margin_top = 195.25
+margin_right = 52.6992
+margin_bottom = 235.25
+focus_neighbour_left = NodePath("../SoundSlider")
+focus_neighbour_top = NodePath("../../PlayButton")
+focus_neighbour_right = NodePath("../SoundSlider")
+focus_neighbour_bottom = NodePath("../../Music/MusicToggle")
+focus_next = NodePath("../SoundSlider")
+focus_previous = NodePath("../../PlayButton")
+texture_normal = ExtResource( 3 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundSlider" type="HSlider" parent="UI/Menu/Sound"]
+margin_left = 48.7697
+margin_top = 215.319
+margin_right = 208.77
+margin_bottom = 231.319
+focus_next = NodePath("../../Music/MusicToggle")
+focus_previous = NodePath("../SoundToggle")
+min_value = -50.0
+max_value = -5.0
+step = 5.0
+value = -5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="Node2D" parent="UI/Menu"]
+
+[node name="MusicText" type="Label" parent="UI/Menu/Music"]
+margin_left = 52.3842
+margin_top = 239.698
+margin_right = 92.3842
+margin_bottom = 279.698
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicToggle" type="TextureButton" parent="UI/Menu/Music"]
+margin_left = 12.6992
+margin_top = 242.872
+margin_right = 52.6992
+margin_bottom = 282.872
+focus_neighbour_left = NodePath("../MusicSlider")
+focus_neighbour_top = NodePath("../../Sound/SoundToggle")
+focus_neighbour_right = NodePath("../MusicSlider")
+focus_neighbour_bottom = NodePath("../../PlayButton")
+focus_next = NodePath("../MusicSlider")
+focus_previous = NodePath("../../Sound/SoundSlider")
+texture_normal = ExtResource( 3 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicSlider" type="HSlider" parent="UI/Menu/Music"]
+margin_left = 51.1507
+margin_top = 256.227
+margin_right = 211.151
+margin_bottom = 272.227
+focus_next = NodePath("../../PlayButton")
+focus_previous = NodePath("../MusicToggle")
+min_value = -50.0
+max_value = -5.0
+step = 5.0
+value = -5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerText" type="Label" parent="UI"]
+margin_left = 595.384
+margin_top = 3.53554
+margin_right = 635.384
+margin_bottom = 43.5355
+text = "0.0"
+
+[node name="EndResults" type="Control" parent="UI"]
+visible = false
+
+[node name="Panel" type="Panel" parent="UI/EndResults"]
+margin_left = -71.9187
+margin_top = -47.9458
+margin_right = -31.9187
+margin_bottom = -7.94583
+rect_scale = Vector2( 11.1403, 6.99814 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SummaryText" type="Label" parent="UI/EndResults"]
+margin_left = 35.2102
+margin_top = -26.2204
+margin_right = 275.21
+margin_bottom = 13.7796
+text = "You managed to run away safely!"
+
+[node name="TimeSpentText" type="Label" parent="UI/EndResults"]
+margin_left = 20.9762
+margin_top = 0.749176
+margin_right = 260.976
+margin_bottom = 40.7492
+text = "Time spent saving your things: 60.0"
+
+[node name="SavedItemsText" type="Label" parent="UI/EndResults"]
+margin_left = 20.2271
+margin_top = 30.7153
+margin_right = 260.227
+margin_bottom = 70.7153
+text = "Saved items:w"
+
+[node name="PlayAgainButton" type="Button" parent="UI/EndResults"]
+margin_left = 71.7647
+margin_top = 194.453
+margin_right = 152.765
+margin_bottom = 214.453
+rect_scale = Vector2( 1.79042, 1.32611 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Play again?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" type="Node2D" parent="UI/EndResults"]
+position = Vector2( 3.05176e-05, 65.9255 )
+
+[node name="Uniques" type="Node2D" parent="UI/EndResults/Items"]
+position = Vector2( 8.98987, 14.9831 )
+
+[node name="Item" type="Node2D" parent="UI/EndResults/Items/Uniques"]
+
+[node name="Sprite" type="Sprite" parent="UI/EndResults/Items/Uniques/Item"]
+texture = ExtResource( 3 )
+
+[node name="Item2" type="Node2D" parent="UI/EndResults/Items/Uniques"]
+position = Vector2( 66.6747, 0 )
+
+[node name="Sprite" type="Sprite" parent="UI/EndResults/Items/Uniques/Item2"]
+texture = ExtResource( 3 )
+
+[node name="Item3" type="Node2D" parent="UI/EndResults/Items/Uniques"]
+position = Vector2( 133.349, 0 )
+
+[node name="Sprite" type="Sprite" parent="UI/EndResults/Items/Uniques/Item3"]
+modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
+texture = ExtResource( 3 )
+
+[node name="Item4" type="Node2D" parent="UI/EndResults/Items/Uniques"]
+position = Vector2( 203.77, 0 )
+
+[node name="Sprite" type="Sprite" parent="UI/EndResults/Items/Uniques/Item4"]
+modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
+texture = ExtResource( 3 )
+
+[node name="Common" type="Node2D" parent="UI/EndResults/Items"]
+position = Vector2( 3.74579, 62.1797 )
+
+[node name="Item2" type="Node2D" parent="UI/EndResults/Items/Common"]
+position = Vector2( 5.24408, 14.2339 )
+
+[node name="Sprite" type="Sprite" parent="UI/EndResults/Items/Common/Item2"]
+texture = ExtResource( 3 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/EndResults/Items/Common/Item2"]
+margin_left = 17.9797
+margin_top = -5.99323
+margin_right = 57.9797
+margin_bottom = 34.0068
+text = "10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+volume_db = -5.0
+script = ExtResource( 10 )
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+volume_db = -5.0
+script = ExtResource( 9 )
+
+[connection signal="item_destroyed" from="." to="." method="_on_Main_item_destroyed"]
+[connection signal="item_picked" from="." to="." method="_on_Main_item_picked"]
+[connection signal="room_exited" from="." to="." method="_on_Main_room_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="died" from="Player" to="." method="_on_Player_died"]
+[connection signal="timeout" from="Cauldron/LaunchTimer" to="Cauldron" method="_on_LaunchTimer_timeout"]
+[connection signal="body_entered" from="Door" to="." method="_on_Door_body_entered"]
+[connection signal="body_exited" from="Door" to="." method="_on_Door_body_exited"]
+[connection signal="pressed" from="UI/Menu/PlayButton" to="UI" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="UI/Menu/Sound/SoundToggle" to="SoundPlayer" method="_on_SoundToggle_pressed"]
+[connection signal="pressed" from="UI/Menu/Sound/SoundToggle" to="UI/Menu/Sound/SoundToggle" method="_on_toggle"]
+[connection signal="value_changed" from="UI/Menu/Sound/SoundSlider" to="SoundPlayer" method="_on_SoundSlider_value_changed"]
+[connection signal="pressed" from="UI/Menu/Music/MusicToggle" to="MusicPlayer" method="_on_MusicToggle_pressed"]
+[connection signal="value_changed" from="UI/Menu/Music/MusicSlider" to="MusicPlayer" method="_on_MusicSlider_value_changed"]
+[connection signal="pressed" from="UI/EndResults/PlayAgainButton" to="." method="_on_play_again"]
