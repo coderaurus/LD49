@@ -47,6 +47,7 @@ func add_points(name : String, value : int):
 
 func _on_Player_died():
 	game_over = true
+	totalPoints += time * 3
 	showEndResults()
 	get_tree().paused = true
 
@@ -73,6 +74,7 @@ func _on_Door_body_exited(body):
 func _on_Main_room_exited():
 	get_tree().paused = true
 	game_won = true
+	totalPoints += time * 3
 	showEndResults()
 
 func showEndResults():
@@ -80,10 +82,10 @@ func showEndResults():
 	var timeSpent
 	
 	if game_over:
-		summary = "You bathed too long in your tincture..."
-		timeSpent = "Your demise took %s seconds" % time
+		summary = "You took a dip into the ooze..."
+		timeSpent = "Your demise took %s seconds." % time
 	elif game_won:
-		summary = "You managed to hop around the room,\nall the way to the exit!"
+		summary = "You managed to save yourself!"
 		timeSpent = "Your escape took %s seconds." % time
 	
 	$UI/EndResults/SummaryText.text = summary
