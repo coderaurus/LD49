@@ -1,10 +1,17 @@
 extends Area2D
 
+var checkVisibility = false
+
 
 func _ready():
 	$AnimationPlayer.play("init")
 	yield($AnimationPlayer, "animation_finished")
 	$AnimationPlayer.play("idle")
+	checkVisibility = true
+
+func _process(_delta):
+	if !$VisibilityNotifier2D.is_on_screen() and checkVisibility:
+		despawn()
 
 
 func _on_hit(body):
@@ -17,7 +24,11 @@ func _on_body_entered(body):
 
 
 func _on_area_entered(_area_id, area, _area_shape, _local_shape):
-	_on_hit(area)
+	if area.is_in_group("Exit"):
+		$DespawnTimer.start(0.1)
+		$AnimationPlayer.playback_speed = 2
+	else:
+		_on_hit(area)
 
 
 func despawn():

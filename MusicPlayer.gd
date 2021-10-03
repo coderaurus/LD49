@@ -1,5 +1,7 @@
 extends AudioStreamPlayer
 
+export var ost : Dictionary = {}
+
 var stored_volume
 onready var button : TextureButton = get_tree().current_scene.get_node("UI/Menu/Music/MusicToggle")
 onready var slider : HSlider = get_tree().current_scene.get_node("UI/Menu/Music/MusicSlider")
@@ -20,6 +22,7 @@ func _on_MusicSlider_value_changed(value):
 		button.texture_normal = onTex
 	else:
 		button.texture_normal = offTex
+	get_tree().current_scene.get_node("SoundPlayer").play_sound("droplet", volume_db)
 
 func _on_MusicToggle_pressed():
 	if volume_db > -50:
@@ -29,3 +32,9 @@ func _on_MusicToggle_pressed():
 	else:
 		slider.value = stored_volume
 		button.texture_normal = onTex
+
+func play_ost(song : String):
+	stop()
+	if ost.has(song):
+		stream = ost.get(song)
+		play()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/what-have-i-done.ogg-55f54331f864bee5c4afb0668c6f3866.oggstr"
+
+[deps]
+
+source_file="res://ost/what-have-i-done.ogg"
+dest_files=[ "res://.import/what-have-i-done.ogg-55f54331f864bee5c4afb0668c6f3866.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

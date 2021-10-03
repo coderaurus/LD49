@@ -23,6 +23,7 @@ var totalPoints : int = 0
 func _ready():
 	randomize()
 	$UI/Menu/PlayButton.grab_focus()
+	$MusicPlayer.play_ost("waiting")
 	get_tree().paused = true
 
 
@@ -30,6 +31,7 @@ func start_game():
 	game_started = true
 	get_tree().paused = false
 	$Timer.start()
+	$MusicPlayer.play_ost("main")
 
 
 func resume_game():
@@ -49,6 +51,7 @@ func _on_Player_died():
 	game_over = true
 	totalPoints += time * 3
 	showEndResults()
+	$MusicPlayer.play_ost("lose")
 	get_tree().paused = true
 
 
@@ -61,20 +64,28 @@ func _on_Main_item_destroyed():
 	items_destroyed += 1
 
 
+func _on_Main_item_picked(item_name : String, item_value : int):
+	add_points(item_name, item_value)
+	$SoundPlayer.play_sound("pickup")
+
+
 func _on_Door_body_entered(body):
 	if body.is_in_group("Player"):
 		player_at_exit = true
+		$Door/Sign/AnimationPlayer.play("show")
 
 
 func _on_Door_body_exited(body):
 	if body.is_in_group("Player"):
 		player_at_exit = false
+		$Door/Sign/AnimationPlayer.play("hide")
 
 
 func _on_Main_room_exited():
 	get_tree().paused = true
 	game_won = true
 	totalPoints += time * 3
+	$MusicPlayer.play_ost("win")
 	showEndResults()
 
 func showEndResults():
@@ -94,6 +105,7 @@ func showEndResults():
 	showSavedItems()
 	$UI/EndResults/TotalPointsText.text = "Total points: %s" % totalPoints
 	$UI/EndResults.show()
+	$UI/EndResults/PlayAgainButton.grab_focus()
 
 func showSavedItems():
 	var u_index = 0
@@ -106,7 +118,7 @@ func showSavedItems():
 			score.get_node("Sprite").texture = item[2]
 			score.get_node("RichTextLabel").text = String(totalSaved)
 			u_index += 1
-			print("UNIQUE %s %s" % [k, totalSaved])
+#			print("UNIQUE %s %s" % [k, totalSaved])
 		
 		if $Items.common_items.has(k):
 			var score = $UI/EndResults/Items/Common.get_child(c_index)
@@ -114,11 +126,7 @@ func showSavedItems():
 			score.get_node("Sprite").texture = item[2]
 			score.get_node("RichTextLabel").text = String(totalSaved)
 			c_index += 1
-			print("%s %s" % [k, totalSaved])
-
-
-func _on_Main_item_picked(item_name : String, item_value : int):
-	add_points(item_name, item_value)
+#			print("%s %s" % [k, totalSaved])
 
 
 func _on_Timer_timeout():

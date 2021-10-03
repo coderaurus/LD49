@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.7959
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "dissolve"
 length = 3.0
 tracks/0/type = "value"
@@ -34,8 +34,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -50,8 +49,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "init"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -105,12 +103,14 @@ texture = ExtResource( 1 )
 hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dissolve = SubResource( 4 )
-anims/idle = SubResource( 2 )
-anims/init = SubResource( 3 )
+anims/dissolve = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/init = SubResource( 4 )
 
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [connection signal="area_shape_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

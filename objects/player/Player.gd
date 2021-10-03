@@ -5,27 +5,26 @@ signal hit
 
 onready var anim = get_node("AnimationPlayer")
 
-
 var speed : int = 175
 var velocity : Vector2 = Vector2.ZERO
 var jumping = false
 var dying = false
 
+
 func _ready():
 	anim.play("idle")
 
-
 func get_input():
 	velocity = Vector2.ZERO
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("ui_down") or Input.is_action_pressed("move_down"):
 		velocity = Vector2.DOWN
-	elif Input.is_action_pressed("ui_up"):
+	elif Input.is_action_pressed("ui_up") or Input.is_action_pressed("move_up"):
 		velocity = Vector2.UP
 		
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("move_left"):
 		velocity += Vector2.LEFT
 		$Sprite.flip_h = true
-	elif Input.is_action_pressed("ui_right"):
+	elif Input.is_action_pressed("ui_right") or Input.is_action_pressed("move_right"):
 		velocity += Vector2.RIGHT
 		$Sprite.flip_h = false
 
@@ -47,13 +46,12 @@ func get_input():
 
 func jump():
 #	$CollisionShape2D.disabled = true
+	jumping = true
 	anim.advance(0)
 	anim.play("jump")
-	jumping = true
-	print("Jumping")
+	owner.get_node("SoundPlayer").play_sound("jump")
 	yield(anim, "animation_finished")
 	jumping = false
-	print("Landed")	
 	#$CollisionShape2D.disabled = false
 
 
@@ -67,6 +65,7 @@ func _on_Player_hit():
 		dying = true
 		anim.advance(0)
 		anim.play("die")
+		owner.get_node("SoundPlayer").play_sound("hurt")
 		yield(anim,"animation_finished")
 		emit_signal("died")
 		queue_free()

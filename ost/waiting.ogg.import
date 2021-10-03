@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/waiting.ogg-8b8d466d7535848969f666af6df0965e.oggstr"
+
+[deps]
+
+source_file="res://ost/waiting.ogg"
+dest_files=[ "res://.import/waiting.ogg-8b8d466d7535848969f666af6df0965e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -37,7 +37,6 @@ __meta__ = {
 }
 
 [node name="LaunchTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 1 )
@@ -47,4 +46,8 @@ position = Vector2( -0.944977, 11.3393 )
 z_index = 10
 shape = SubResource( 2 )
 
+[node name="TempoTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="timeout" from="LaunchTimer" to="." method="_on_LaunchTimer_timeout"]
+[connection signal="timeout" from="TempoTimer" to="." method="_tempo_up"]

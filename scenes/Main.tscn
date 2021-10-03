@@ -1,15 +1,17 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://objects/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/items/ItemSpawn.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/cauldron/Cauldron.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=4]
 [ext_resource path="res://gfx/button.png" type="Texture" id=5]
-[ext_resource path="res://objects/Door.gd" type="Script" id=6]
+[ext_resource path="res://gfx/button_focus.png" type="Texture" id=6]
 [ext_resource path="res://objects/items/ItemManager.gd" type="Script" id=7]
 [ext_resource path="res://objects/ui/UI.gd" type="Script" id=8]
 [ext_resource path="res://MusicPlayer.gd" type="Script" id=9]
 [ext_resource path="res://SoundPlayer.gd" type="Script" id=10]
+[ext_resource path="res://gfx/exit_sign.png" type="Texture" id=11]
+[ext_resource path="res://gfx/button_down.png" type="Texture" id=12]
 [ext_resource path="res://gfx/tilset/baseTiles.tres" type="TileSet" id=13]
 [ext_resource path="res://gfx/door.png" type="Texture" id=14]
 [ext_resource path="res://gfx/furniture.png" type="Texture" id=15]
@@ -24,39 +26,112 @@
 [ext_resource path="res://gfx/panel.png" type="Texture" id=24]
 [ext_resource path="res://fonts/baseFont.tres" type="DynamicFont" id=25]
 [ext_resource path="res://fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=26]
+[ext_resource path="res://gfx/toggle_focus.png" type="Texture" id=27]
 [ext_resource path="res://gfx/toggle_on.png" type="Texture" id=28]
+[ext_resource path="res://sfx/droplet.wav" type="AudioStream" id=29]
+[ext_resource path="res://sfx/pickup.wav" type="AudioStream" id=30]
+[ext_resource path="res://sfx/hurt.wav" type="AudioStream" id=31]
+[ext_resource path="res://sfx/jump.wav" type="AudioStream" id=32]
+[ext_resource path="res://gfx/how2play_goals.png" type="Texture" id=33]
+[ext_resource path="res://gfx/how2play_exit.png" type="Texture" id=34]
+[ext_resource path="res://gfx/how2play_conrtols.png" type="Texture" id=35]
+[ext_resource path="res://ost/win.ogg" type="AudioStream" id=36]
+[ext_resource path="res://ost/lose.ogg" type="AudioStream" id=37]
+[ext_resource path="res://ost/waiting.ogg" type="AudioStream" id=38]
+[ext_resource path="res://ost/what-have-i-done.ogg" type="AudioStream" id=39]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32.8159, 16 )
+extents = Vector2( 40.8788, 17.6652 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "hide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="StyleBoxTexture" id=4]
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 15.0
 margin_right = 15.0
 margin_top = 15.0
 margin_bottom = 15.0
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 15.0
+margin_right = 15.0
+margin_top = 15.0
+margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 15.0
+margin_right = 15.0
+margin_top = 15.0
+margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 15.0
+margin_right = 15.0
+margin_top = 15.0
+margin_bottom = 15.0
+
+[sub_resource type="DynamicFont" id=8]
 size = 10
 font_data = ExtResource( 26 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=9]
+size = 10
+font_data = ExtResource( 26 )
+
+[sub_resource type="DynamicFont" id=10]
 size = 12
 font_data = ExtResource( 26 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=11]
 size = 10
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 26 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=12]
 size = 14
 font_data = ExtResource( 26 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 32, 16 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 19.3709, 37.2185 )
 
 [node name="Main" type="Node2D"]
@@ -662,21 +737,75 @@ modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
 position = Vector2( 579.763, 235.668 )
 z_index = 1
 
-[node name="Door" type="Area2D" parent="."]
+[node name="Door" type="Area2D" parent="." groups=[
+"Exit",
+]]
 position = Vector2( 319.26, 113.364 )
 z_index = 4
-script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2( 0, 1.6837 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Door"]
 position = Vector2( 0, -48 )
 texture = ExtResource( 14 )
 
+[node name="Sign" type="Sprite" parent="Door"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 13.3484, -66.0746 )
+texture = ExtResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Door/Sign"]
+anims/hide = SubResource( 2 )
+anims/show = SubResource( 3 )
+
 [node name="UI" type="CanvasLayer" parent="."]
 pause_mode = 2
 script = ExtResource( 8 )
+
+[node name="TimerText" type="Label" parent="UI"]
+margin_left = 562.346
+margin_top = 26.5277
+margin_right = 690.346
+margin_bottom = 66.5277
+rect_scale = Vector2( 0.802124, 1 )
+custom_fonts/font = ExtResource( 25 )
+text = "0.0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="How2Play" type="Node2D" parent="UI"]
+
+[node name="Panel" type="Panel" parent="UI/How2Play"]
+self_modulate = Color( 1, 1, 1, 0.729412 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2.76944
+margin_top = 0.227142
+margin_right = 37.2306
+margin_bottom = 40.2271
+rect_scale = Vector2( 17.7548, 9.6517 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" type="Sprite" parent="UI/How2Play"]
+position = Vector2( 451.841, 113.844 )
+texture = ExtResource( 35 )
+
+[node name="Goals" type="Sprite" parent="UI/How2Play"]
+position = Vector2( 369.817, 239.709 )
+texture = ExtResource( 33 )
+
+[node name="Exit" type="Sprite" parent="UI/How2Play"]
+position = Vector2( 143.127, 60.3304 )
+texture = ExtResource( 34 )
+offset = Vector2( 426.801, 195.642 )
 
 [node name="Menu" type="Control" parent="UI"]
 margin_left = 1.49831
@@ -711,10 +840,10 @@ focus_neighbour_bottom = NodePath("../Sound/SoundToggle")
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
 custom_fonts/font = ExtResource( 25 )
 text = " Play "
 align = 0
@@ -730,7 +859,7 @@ margin_left = 50.7968
 margin_top = 196.044
 margin_right = 90.7968
 margin_bottom = 236.044
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "Sound"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -748,6 +877,8 @@ focus_neighbour_bottom = NodePath("../../Music/MusicToggle")
 focus_next = NodePath("../SoundSlider")
 focus_previous = NodePath("../../PlayButton")
 texture_normal = ExtResource( 28 )
+texture_hover = ExtResource( 27 )
+texture_focused = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -762,7 +893,7 @@ focus_previous = NodePath("../SoundToggle")
 min_value = -50.0
 max_value = -5.0
 step = 5.0
-value = -5.0
+value = -25.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -775,7 +906,7 @@ margin_left = 52.3842
 margin_top = 239.698
 margin_right = 92.3842
 margin_bottom = 279.698
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "Music"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -793,6 +924,8 @@ focus_neighbour_bottom = NodePath("../../PlayButton")
 focus_next = NodePath("../MusicSlider")
 focus_previous = NodePath("../../Sound/SoundSlider")
 texture_normal = ExtResource( 28 )
+texture_hover = ExtResource( 27 )
+texture_focused = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -807,18 +940,19 @@ focus_previous = NodePath("../MusicToggle")
 min_value = -50.0
 max_value = -5.0
 step = 5.0
-value = -5.0
+value = -25.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimerText" type="Label" parent="UI"]
-margin_left = 642.103
-margin_top = 11.5446
-margin_right = 682.103
-margin_bottom = 51.5445
-custom_fonts/font = ExtResource( 25 )
-text = "0.0"
+[node name="GuideCheck" type="CheckBox" parent="UI/Menu"]
+margin_left = 225.495
+margin_top = 289.173
+margin_right = 353.495
+margin_bottom = 313.173
+custom_fonts/font = SubResource( 9 )
+pressed = true
+text = "Show guide"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -853,7 +987,7 @@ margin_left = 8.37225
 margin_top = -49.3889
 margin_right = 286.372
 margin_bottom = -9.38885
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 10 )
 text = "You managed to run away safely!"
 align = 1
 autowrap = true
@@ -864,7 +998,7 @@ margin_left = 3.53662
 margin_top = -2.34257
 margin_right = 303.537
 margin_bottom = 13.6574
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 11 )
 text = "Your escape took 60.0 seconds."
 
 [node name="SavedItemsText" type="Label" parent="UI/EndResults"]
@@ -872,7 +1006,7 @@ margin_left = 4.86922
 margin_top = 18.9001
 margin_right = 244.869
 margin_bottom = 34.9001
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 11 )
 text = "Saved items:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -883,7 +1017,7 @@ margin_left = 3.6931
 margin_top = 176.65
 margin_right = 243.693
 margin_bottom = 192.65
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 11 )
 text = "Total points:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -915,7 +1049,7 @@ __meta__ = {
 position = Vector2( 14.0159, 51.9097 )
 
 [node name="Uniques" type="Node2D" parent="UI/EndResults/Items"]
-position = Vector2( 8.98987, 14.9831 )
+position = Vector2( 0.495028, 14.9831 )
 
 [node name="Item7" type="Node2D" parent="UI/EndResults/Items/Uniques"]
 position = Vector2( -0.707123, -0.0877838 )
@@ -927,7 +1061,7 @@ margin_left = 13.3078
 margin_top = -5.99323
 margin_right = 53.3078
 margin_bottom = 34.0068
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -942,7 +1076,7 @@ margin_left = 13.3078
 margin_top = -5.99323
 margin_right = 53.3078
 margin_bottom = 34.0068
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 
 [node name="Item9" type="Node2D" parent="UI/EndResults/Items/Uniques"]
 position = Vector2( 132.229, 2.74065 )
@@ -954,7 +1088,7 @@ margin_left = 13.3078
 margin_top = -5.99323
 margin_right = 53.3078
 margin_bottom = 34.0068
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 
 [node name="Item10" type="Node2D" parent="UI/EndResults/Items/Uniques"]
 position = Vector2( 195.161, 2.03354 )
@@ -966,13 +1100,13 @@ margin_left = 13.3078
 margin_top = -5.99323
 margin_right = 53.3078
 margin_bottom = 34.0068
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Common" type="Node2D" parent="UI/EndResults/Items"]
-position = Vector2( 3.74579, 62.1797 )
+position = Vector2( -5.22098, 62.1797 )
 
 [node name="Item2" type="Node2D" parent="UI/EndResults/Items/Common"]
 position = Vector2( 5.24408, 14.2339 )
@@ -984,13 +1118,13 @@ margin_left = 17.9797
 margin_top = -5.99323
 margin_right = 57.9797
 margin_bottom = 34.0068
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Item3" type="Node2D" parent="UI/EndResults/Items/Common"]
-position = Vector2( 59.6985, 14.2339 )
+position = Vector2( 72.9127, 14.2339 )
 
 [node name="Sprite" type="Sprite" parent="UI/EndResults/Items/Common/Item3"]
 
@@ -999,10 +1133,10 @@ margin_left = 17.9797
 margin_top = -5.99323
 margin_right = 57.9797
 margin_bottom = 34.0068
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 
 [node name="Item4" type="Node2D" parent="UI/EndResults/Items/Common"]
-position = Vector2( 124.752, 14.2339 )
+position = Vector2( 135.135, 14.2339 )
 
 [node name="Sprite" type="Sprite" parent="UI/EndResults/Items/Common/Item4"]
 
@@ -1011,10 +1145,10 @@ margin_left = 17.9797
 margin_top = -5.99323
 margin_right = 57.9797
 margin_bottom = 34.0068
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 
 [node name="Item5" type="Node2D" parent="UI/EndResults/Items/Common"]
-position = Vector2( 187.684, 14.2339 )
+position = Vector2( 198.067, 14.2339 )
 
 [node name="Sprite" type="Sprite" parent="UI/EndResults/Items/Common/Item5"]
 
@@ -1023,10 +1157,10 @@ margin_left = 17.9797
 margin_top = -5.99323
 margin_right = 57.9797
 margin_bottom = 34.0068
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 
 [node name="Item6" type="Node2D" parent="UI/EndResults/Items/Common"]
-position = Vector2( 239.358, 14.2339 )
+position = Vector2( 254.932, 14.2339 )
 
 [node name="Sprite" type="Sprite" parent="UI/EndResults/Items/Common/Item6"]
 
@@ -1035,20 +1169,32 @@ margin_left = 17.9797
 margin_top = -5.99323
 margin_right = 57.9797
 margin_bottom = 34.0068
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
-volume_db = -5.0
+volume_db = -25.0
 script = ExtResource( 10 )
+sounds = {
+"droplet": ExtResource( 29 ),
+"hurt": ExtResource( 31 ),
+"jump": ExtResource( 32 ),
+"pickup": ExtResource( 30 )
+}
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
-volume_db = -5.0
+volume_db = -25.0
 script = ExtResource( 9 )
+ost = {
+"lose": ExtResource( 37 ),
+"main": ExtResource( 39 ),
+"waiting": ExtResource( 38 ),
+"win": ExtResource( 36 )
+}
 
 [node name="Shelves" type="Node2D" parent="."]
 
@@ -1059,7 +1205,7 @@ z_index = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/Shelf"]
 position = Vector2( 0, 22 )
 z_index = 10
-shape = SubResource( 2 )
+shape = SubResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Shelves/Shelf"]
 texture = ExtResource( 15 )
@@ -1072,7 +1218,7 @@ z_index = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/Shelf 2"]
 position = Vector2( 0, 22 )
 z_index = 10
-shape = SubResource( 2 )
+shape = SubResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Shelves/Shelf 2"]
 texture = ExtResource( 15 )
@@ -1086,7 +1232,7 @@ z_index = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/Shelf 3"]
 position = Vector2( 0, 22 )
 z_index = 10
-shape = SubResource( 2 )
+shape = SubResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Shelves/Shelf 3"]
 texture = ExtResource( 15 )
@@ -1100,7 +1246,7 @@ z_index = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/Shelf 4"]
 position = Vector2( 0, 22 )
 z_index = 10
-shape = SubResource( 2 )
+shape = SubResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Shelves/Shelf 4"]
 texture = ExtResource( 15 )
@@ -1114,7 +1260,7 @@ z_index = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/Shelf 5"]
 position = Vector2( 0, 22 )
 z_index = 10
-shape = SubResource( 2 )
+shape = SubResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Shelves/Shelf 5"]
 texture = ExtResource( 15 )
@@ -1134,7 +1280,7 @@ frame = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tables/Table"]
 position = Vector2( 1.7838, -6.34959 )
 z_index = 8
-shape = SubResource( 3 )
+shape = SubResource( 14 )
 
 [node name="Table2" type="StaticBody2D" parent="Tables"]
 position = Vector2( 48.7663, 181.539 )
@@ -1149,7 +1295,7 @@ frame = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tables/Table2"]
 position = Vector2( 1.7838, -6.34959 )
 z_index = 8
-shape = SubResource( 3 )
+shape = SubResource( 14 )
 
 [node name="Table3" type="StaticBody2D" parent="Tables"]
 position = Vector2( 651.075, 268.315 )
@@ -1165,7 +1311,7 @@ frame = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tables/Table3"]
 position = Vector2( 1.7838, -6.34959 )
 z_index = 8
-shape = SubResource( 3 )
+shape = SubResource( 14 )
 
 [node name="Table4" type="StaticBody2D" parent="Tables"]
 position = Vector2( 650.112, 181.539 )
@@ -1182,7 +1328,7 @@ frame = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tables/Table4"]
 position = Vector2( 1.7838, -6.34959 )
 z_index = 8
-shape = SubResource( 3 )
+shape = SubResource( 14 )
 
 [connection signal="item_destroyed" from="." to="." method="_on_Main_item_destroyed"]
 [connection signal="item_picked" from="." to="." method="_on_Main_item_picked"]
@@ -1196,6 +1342,7 @@ shape = SubResource( 3 )
 [connection signal="value_changed" from="UI/Menu/Sound/SoundSlider" to="SoundPlayer" method="_on_SoundSlider_value_changed"]
 [connection signal="pressed" from="UI/Menu/Music/MusicToggle" to="MusicPlayer" method="_on_MusicToggle_pressed"]
 [connection signal="value_changed" from="UI/Menu/Music/MusicSlider" to="MusicPlayer" method="_on_MusicSlider_value_changed"]
+[connection signal="toggled" from="UI/Menu/GuideCheck" to="UI" method="_on_guide_toggle"]
 [connection signal="pressed" from="UI/EndResults/PlayAgainButton" to="." method="_on_play_again"]
 
 [editable path="Items/Uniques/US"]
