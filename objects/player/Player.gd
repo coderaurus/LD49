@@ -5,7 +5,7 @@ signal hit
 
 onready var anim = get_node("AnimationPlayer")
 
-var speed : int = 175
+export var speed : int = 175
 var velocity : Vector2 = Vector2.ZERO
 var jumping = false
 var dying = false
