@@ -15,7 +15,7 @@ func _process(_delta):
 
 
 func _on_hit(body):
-	if body.is_in_group("Player") or body.is_in_group("Item"):
+	if body.is_in_group("Player") or (body.is_in_group("Item") and !body.is_unique):
 		body.emit_signal("hit")
 
 

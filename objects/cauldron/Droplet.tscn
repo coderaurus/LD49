@@ -5,6 +5,7 @@
 [ext_resource path="res://gfx/player_shadow.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 8.61177
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -73,6 +74,7 @@ collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1.16799 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

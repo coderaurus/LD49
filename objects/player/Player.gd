@@ -14,6 +14,7 @@ var dying = false
 func _ready():
 	anim.play("idle")
 
+
 func get_input():
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_down") or Input.is_action_pressed("move_down"):
@@ -27,11 +28,9 @@ func get_input():
 	elif Input.is_action_pressed("ui_right") or Input.is_action_pressed("move_right"):
 		velocity += Vector2.RIGHT
 		$Sprite.flip_h = false
-
+	
 	velocity = velocity.normalized()
 	
-	
-
 	if Input.is_action_just_pressed("jump") and !jumping:
 		jump()
 	
@@ -43,6 +42,17 @@ func get_input():
 			anim.play("move")
 		else:
 			anim.play("idle")
+
+
+func reset():
+	jumping = false
+	dying = false
+	velocity = Vector2.ZERO
+	$CollisionShape2D.disabled = false
+	self_modulate = Color(1,1,1,1)
+	anim.advance(0)
+	anim.play("idle")
+
 
 func jump():
 #	$CollisionShape2D.disabled = true
@@ -68,4 +78,5 @@ func _on_Player_hit():
 		owner.get_node("SoundPlayer").play_sound("hurt")
 		yield(anim,"animation_finished")
 		emit_signal("died")
-		queue_free()
+		$CollisionShape2D.disabled = true
+#		queue_free()

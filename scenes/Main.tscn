@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://objects/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/items/ItemSpawn.tscn" type="PackedScene" id=2]
@@ -75,6 +75,12 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="DynamicFont" id=15]
+size = 14
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 26 )
+
 [sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 32, 32 )
@@ -113,6 +119,14 @@ font_data = ExtResource( 26 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 10
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 26 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 10
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 26 )
 
 [sub_resource type="DynamicFont" id=10]
@@ -314,7 +328,7 @@ z_index = 1
 
 [node name="IS21" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 183.334, 92.1551 )
+position = Vector2( 183.964, 82.7057 )
 z_index = 1
 
 [node name="IS22" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -459,7 +473,7 @@ z_index = 1
 
 [node name="IS50" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 613.82, 164.237 )
+position = Vector2( 620.12, 169.277 )
 z_index = 1
 
 [node name="IS51" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -469,7 +483,7 @@ z_index = 1
 
 [node name="IS52" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 612.485, 230.311 )
+position = Vector2( 606.815, 237.871 )
 z_index = 1
 
 [node name="IS53" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -484,12 +498,12 @@ z_index = 1
 
 [node name="IS55" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 525.053, 258.343 )
+position = Vector2( 515.604, 255.823 )
 z_index = 1
 
 [node name="IS56" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 478.333, 269.689 )
+position = Vector2( 478.963, 257.72 )
 z_index = 1
 
 [node name="IS57" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -509,12 +523,12 @@ z_index = 1
 
 [node name="IS60" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 544.408, 271.691 )
+position = Vector2( 539.998, 283.66 )
 z_index = 1
 
 [node name="IS61" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 499.691, 274.361 )
+position = Vector2( 497.171, 280.031 )
 z_index = 1
 
 [node name="IS62" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -574,12 +588,12 @@ z_index = 1
 
 [node name="IS73" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 342.847, 263.682 )
+position = Vector2( 332.768, 255.492 )
 z_index = 1
 
 [node name="IS74" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 342.847, 263.682 )
+position = Vector2( 412.773, 71.544 )
 z_index = 1
 
 [node name="IS75" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -589,17 +603,17 @@ z_index = 1
 
 [node name="IS76" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 410.257, 246.329 )
+position = Vector2( 421.596, 256.408 )
 z_index = 1
 
 [node name="IS77" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 357.53, 229.644 )
+position = Vector2( 352.49, 224.604 )
 z_index = 1
 
 [node name="IS78" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 387.564, 249.666 )
+position = Vector2( 374.965, 244.626 )
 z_index = 1
 
 [node name="IS79" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -624,7 +638,7 @@ z_index = 1
 
 [node name="IS83" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 431.614, 278.365 )
+position = Vector2( 446.103, 284.665 )
 z_index = 1
 
 [node name="IS84" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -669,7 +683,7 @@ z_index = 1
 
 [node name="IS92" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 581.116, 262.347 )
+position = Vector2( 581.746, 271.796 )
 z_index = 1
 
 [node name="IS93" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -699,12 +713,12 @@ z_index = 1
 
 [node name="IS98" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 395.555, 291.064 )
+position = Vector2( 399.335, 106.486 )
 z_index = 1
 
 [node name="IS99" parent="Items/Commons" instance=ExtResource( 2 )]
 modulate = Color( 0.976471, 0.964706, 0.909804, 1 )
-position = Vector2( 316.8, 301.076 )
+position = Vector2( 311.13, 293.516 )
 z_index = 1
 
 [node name="IS100" parent="Items/Commons" instance=ExtResource( 2 )]
@@ -770,7 +784,7 @@ margin_top = 26.5277
 margin_right = 690.346
 margin_bottom = 66.5277
 rect_scale = Vector2( 0.802124, 1 )
-custom_fonts/font = ExtResource( 25 )
+custom_fonts/font = SubResource( 15 )
 text = "0.0"
 align = 2
 __meta__ = {
@@ -778,6 +792,7 @@ __meta__ = {
 }
 
 [node name="How2Play" type="Node2D" parent="UI"]
+visible = false
 
 [node name="Panel" type="Panel" parent="UI/How2Play"]
 self_modulate = Color( 1, 1, 1, 0.729412 )
@@ -957,6 +972,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HiScoreText" type="Label" parent="UI/Menu"]
+margin_left = 8.00903
+margin_top = 119.468
+margin_right = 168.009
+margin_bottom = 133.468
+custom_fonts/font = SubResource( 16 )
+text = "Hi-score: 999999"
+valign = 1
+
 [node name="EndResults" type="Control" parent="UI"]
 visible = false
 margin_left = 182.961
@@ -1015,10 +1039,23 @@ __meta__ = {
 [node name="TotalPointsText" type="Label" parent="UI/EndResults"]
 margin_left = 3.6931
 margin_top = 176.65
-margin_right = 243.693
+margin_right = 213.693
 margin_bottom = 192.65
 custom_fonts/font = SubResource( 11 )
-text = "Total points:"
+text = "Score:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RecordText" type="Label" parent="UI/EndResults"]
+visible = false
+margin_left = 93.7947
+margin_top = 176.65
+margin_right = 303.795
+margin_bottom = 192.65
+custom_fonts/font = SubResource( 11 )
+text = "New record!"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1329,6 +1366,9 @@ frame = 3
 position = Vector2( 1.7838, -6.34959 )
 z_index = 8
 shape = SubResource( 14 )
+
+[node name="PlayerSpawn" type="Node2D" parent="."]
+position = Vector2( 349.594, 329.407 )
 
 [connection signal="item_destroyed" from="." to="." method="_on_Main_item_destroyed"]
 [connection signal="item_picked" from="." to="." method="_on_Main_item_picked"]

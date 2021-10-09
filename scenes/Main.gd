@@ -19,13 +19,24 @@ var items_destroyed : int = 0
 var saved : Dictionary = {}
 var totalPoints : int = 0
 
+var hiScore = 0
+var player
 
 func _ready():
 	randomize()
+	$UI/EndResults.hide()
+	$UI/Menu.show()
+	$UI/How2Play.show()
 	$UI/Menu/PlayButton.grab_focus()
 	$MusicPlayer.play_ost("waiting")
 	get_tree().paused = true
+	player = get_node("Player")
+	player.global_position = get_node("PlayerSpawn").global_position
 
+	if hiScore == 0:
+		$UI/Menu/HiScoreText.text = "No hi-score yet"
+	else:
+		$UI/Menu/HiScoreText.text = "Hi-score: %s" % hiScore
 
 func start_game():
 	game_started = true
@@ -54,6 +65,51 @@ func _on_Player_died():
 	$MusicPlayer.play_ost("lose")
 	get_tree().paused = true
 
+func reset_game():
+	# Reset things
+	$Door/Sign/AnimationPlayer.play("hide")
+	
+	items_destroyed = 0
+	totalPoints = 0
+	saved = {}
+	
+	time = 0
+	$UI/TimerText.text = str(0).pad_decimals(1)
+	
+	player_at_exit = false
+	player.reset()
+	player.global_position = get_node("PlayerSpawn").global_position
+	
+	get_node("Cauldron").reset()
+	_delete_droplets()
+	_delete_pools()
+	
+	get_node("Items").reset()
+	
+	game_over = false
+	game_won = false
+#	game_started = false
+	
+	$Timer.start()
+	$MusicPlayer.play_ost("main")
+	get_tree().paused = false
+
+func _delete_pools():
+	var counter = 0
+	var nodes = get_tree().get_nodes_in_group("AcidPool")
+	# Delete nodes as long as we find them
+	for n in nodes:
+		n.queue_free()
+		counter += 1
+
+
+func _delete_droplets():
+	var counter = 0
+	var nodes = get_tree().get_nodes_in_group("Droplet")
+	# Delete nodes as long as we find them
+	for n in nodes:
+		n.queue_free()
+		counter += 1
 
 func reload_game():
 	get_tree().reload_current_scene()
@@ -88,9 +144,30 @@ func _on_Main_room_exited():
 	$MusicPlayer.play_ost("win")
 	showEndResults()
 
+
+func resetEndResults():
+	var items = $UI/EndResults/Items/Uniques.get_children()
+	for i in items:
+		i.get_node("Item").reset()
+		i.get_node("Sprite").texture = null
+		i.get_node("RichTextLabel").text = ""
+	items = $UI/EndResults/Items/Commons.get_children()
+	for i in items:
+		i.get_node("Item").reset()
+		i.get_node("Sprite").texture = null
+		i.get_node("RichTextLabel").text = ""
+
+
 func showEndResults():
 	var summary
 	var timeSpent
+	var newHiScore = false
+	
+	if hiScore < totalPoints and game_won:
+		hiScore = totalPoints
+		newHiScore = true
+		
+	# Inform new hi-score
 	
 	if game_over:
 		summary = "You took a dip into the ooze..."
@@ -103,9 +180,17 @@ func showEndResults():
 	
 	$UI/EndResults/TimeSpentText.text = timeSpent
 	showSavedItems()
-	$UI/EndResults/TotalPointsText.text = "Total points: %s" % totalPoints
+	$UI/EndResults/TotalPointsText.text = "Score: %s" % totalPoints
+	
+	if newHiScore:
+		$UI/EndResults/RecordText.show()
+		$UI/Menu/HiScoreText.text = "Hi-score: %s" % hiScore
+	else:
+		$UI/EndResults/RecordText.hide()
+	
 	$UI/EndResults.show()
 	$UI/EndResults/PlayAgainButton.grab_focus()
+
 
 func showSavedItems():
 	var u_index = 0
@@ -136,4 +221,5 @@ func _on_Timer_timeout():
 
 func _on_play_again():
 	$UI/EndResults.hide()
-	get_tree().reload_current_scene()
+#	get_tree().reload_current_scene()
+	reset_game()

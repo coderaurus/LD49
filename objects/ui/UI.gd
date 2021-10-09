@@ -2,7 +2,7 @@ extends CanvasLayer
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel") and !get_tree().paused:
+	if Input.is_action_just_pressed("ui_cancel"):
 		if get_tree().paused:
 			$Menu.hide()
 			$How2Play.hide()

@@ -4,8 +4,13 @@ export var droplet = preload("res://objects/cauldron/Droplet.tscn")
 var player
 
 var rng = RandomNumberGenerator.new()
+const mod_initial = 2.0
+const chance_initial = 0.3
 var mod = 2.0
 var chance = 0.3
+const dropletSizeMin = 0.5
+const dropletSizeMax = 2.5
+
 
 func _ready():
 	yield(get_tree(), "idle_frame")
@@ -18,6 +23,7 @@ func start():
 	$LaunchTimer.start()
 	$TempoTimer.start()
 
+
 func _process(_delta):
 	if player.global_position.y > global_position.y:
 		z_index = player.z_index - 1
@@ -25,12 +31,20 @@ func _process(_delta):
 		z_index = player.z_index + 1
 
 
+func reset():
+	mod = mod_initial
+	chance = chance_initial
+	$LaunchTimer.wait_time = 1
+	$AnimationPlayer.play("idle")
+
+
 func _on_LaunchTimer_timeout():
 	if rng.randf() > chance:
 		add_droplet(mod)
 	else:
 		add_droplet()
-		
+
+
 func add_droplet(amount : int = 1):
 	for i in amount:
 		var dropletInstance = droplet.instance()
